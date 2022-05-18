@@ -113,7 +113,7 @@ function namaBulan($bulan){
 		</tr>
 		<?php 
 		    $no = 1;
-            $data = mysqli_query($conn,"SELECT * FROM pesanan where status='Selesai' tgl_pesanan like '$tgl%'");
+            $data = mysqli_query($conn,"SELECT * FROM pesanan where status='Selesai' and tgl_pesanan like '$tgl%'");
             while($d = mysqli_fetch_array($data)){
 		        ?>
                 <tr>

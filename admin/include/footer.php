@@ -7,7 +7,7 @@
   ?>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <!-- <b>Version</b> 2.4.0 -->
     </div>
     <strong><?=$toko;?></strong>
   </footer>
