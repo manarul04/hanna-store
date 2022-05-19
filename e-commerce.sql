@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2022 at 05:47 AM
+-- Generation Time: May 19, 2022 at 02:03 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -283,7 +283,7 @@ CREATE TABLE `tbl_pembeli` (
 --
 
 INSERT INTO `tbl_pembeli` (`id_pembeli`, `idu`, `nama_pembeli`, `jenis_kelamin`, `alamat`) VALUES
-('20220220063548', '20220220063548', 'mana', 'L', 'getassrabi'),
+('20220220063548', '20220220063548', 'Manarul', 'L', 'getassrabi'),
 ('20220306074446', '20220306074446', 'Manarul', 'L', 'getassrabi');
 
 -- --------------------------------------------------------
