@@ -6,6 +6,6 @@
     $dbname = "e-commerce";
     
     $conn = mysqli_connect($hostname,$username,$password,$dbname);
-    $index = "http://localhost/e-commerce/";
-    $admin = "http://localhost/e-commerce/admin/";
+    $index = "http://localhost/hanna-store/";
+    $admin = "http://localhost/hanna-store/admin/";
 ?>
