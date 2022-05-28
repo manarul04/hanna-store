@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 02:03 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Generation Time: May 28, 2022 at 05:51 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -284,7 +284,7 @@ CREATE TABLE `tbl_pembeli` (
 
 INSERT INTO `tbl_pembeli` (`id_pembeli`, `idu`, `nama_pembeli`, `jenis_kelamin`, `alamat`) VALUES
 ('20220220063548', '20220220063548', 'Manarul', 'L', 'getassrabi'),
-('20220306074446', '20220306074446', 'Manarul', 'L', 'getassrabi');
+('20220528053956', '20220528053956', 'Manarul Hidayat ', 'L', 'getassrabi');
 
 -- --------------------------------------------------------
 
@@ -298,17 +298,19 @@ CREATE TABLE `tbl_pengguna` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `email` text NOT NULL,
-  `hak_akses` enum('Admin','Pembeli') NOT NULL
+  `hak_akses` varchar(15) NOT NULL,
+  `verif_code` varchar(100) NOT NULL,
+  `is_verified` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pengguna`
 --
 
-INSERT INTO `tbl_pengguna` (`idu`, `nama`, `username`, `password`, `email`, `hak_akses`) VALUES
-('20220101022919', 'Admin', 'admin', 'admin', 'admin@gmail.com', 'Admin'),
-('20220220063548', 'man4', 'manarul04', 'manarul04', '', 'Pembeli'),
-('20220306074446', 'Manarul', 'manarul', 'manarul', '', 'Pembeli');
+INSERT INTO `tbl_pengguna` (`idu`, `nama`, `username`, `password`, `email`, `hak_akses`, `verif_code`, `is_verified`) VALUES
+('20220101022919', 'Admin', 'admin', 'admin', 'admin@gmail.com', 'Admin', '', 0),
+('20220220063548', 'man4', 'manarul04', 'manarul04', '', 'Pembeli', '', 0),
+('20220528053956', 'Manarul Hidayat ', 'mana', 'mana', 'manarulhidayat04@gmail.com', 'Pembeli', 'e8e355a2d66a92e561d128137460058d', 1);
 
 -- --------------------------------------------------------
 
@@ -382,7 +384,7 @@ INSERT INTO `tbl_produk` (`id_produk`, `id_kategori`, `nama_produk`, `jumlah_pro
 --
 DROP TABLE IF EXISTS `bayar`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bayar`  AS SELECT `pesanan`.`id_pesanan` AS `id_pesanan`, `pesanan`.`id_detail_keranjang` AS `id_detail_keranjang`, `pesanan`.`tgl_pesanan` AS `tgl_pesanan`, `pesanan`.`no_wa` AS `no_wa`, `pesanan`.`penerima` AS `penerima`, `pesanan`.`alamat` AS `alamat`, `pesanan`.`bukti` AS `bukti`, `pesanan`.`nama_metode` AS `nama_metode`, `pesanan`.`resi` AS `resi`, `pesanan`.`status` AS `status`, sum(`pesanan`.`quantity` * `pesanan`.`harga_produk`) AS `total_bayar`, `pesanan`.`total` AS `total`, `pesanan`.`ongkir` AS `ongkir` FROM `pesanan` GROUP BY `pesanan`.`id_detail_keranjang` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bayar`  AS SELECT `pesanan`.`id_pesanan` AS `id_pesanan`, `pesanan`.`id_detail_keranjang` AS `id_detail_keranjang`, `pesanan`.`tgl_pesanan` AS `tgl_pesanan`, `pesanan`.`no_wa` AS `no_wa`, `pesanan`.`penerima` AS `penerima`, `pesanan`.`alamat` AS `alamat`, `pesanan`.`bukti` AS `bukti`, `pesanan`.`nama_metode` AS `nama_metode`, `pesanan`.`resi` AS `resi`, `pesanan`.`status` AS `status`, sum(`pesanan`.`quantity` * `pesanan`.`harga_produk`) AS `total_bayar`, `pesanan`.`total` AS `total`, `pesanan`.`ongkir` AS `ongkir` FROM `pesanan` GROUP BY `pesanan`.`id_detail_keranjang``id_detail_keranjang`  ;
 
 -- --------------------------------------------------------
 
@@ -391,7 +393,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `detail_keranjang`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_keranjang`  AS SELECT `tbl_detail_keranjang`.`id_keranjang` AS `id_keranjang`, `tbl_detail_keranjang`.`id_detail_keranjang` AS `id_detail_keranjang`, `tbl_detail_keranjang`.`id_produk` AS `id_produk`, `tbl_produk`.`nama_produk` AS `nama_produk`, `tbl_produk`.`harga_produk` AS `harga_produk`, `tbl_detail_keranjang`.`quantity` AS `quantity`, `tbl_detail_keranjang`.`status` AS `status`, `tbl_keranjang`.`id_pembeli` AS `id_pembeli` FROM ((`tbl_detail_keranjang` join `tbl_produk` on(`tbl_produk`.`id_produk` = `tbl_detail_keranjang`.`id_produk`)) join `tbl_keranjang` on(`tbl_keranjang`.`id_keranjang` = `tbl_detail_keranjang`.`id_keranjang`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_keranjang`  AS SELECT `tbl_detail_keranjang`.`id_keranjang` AS `id_keranjang`, `tbl_detail_keranjang`.`id_detail_keranjang` AS `id_detail_keranjang`, `tbl_detail_keranjang`.`id_produk` AS `id_produk`, `tbl_produk`.`nama_produk` AS `nama_produk`, `tbl_produk`.`harga_produk` AS `harga_produk`, `tbl_detail_keranjang`.`quantity` AS `quantity`, `tbl_detail_keranjang`.`status` AS `status`, `tbl_keranjang`.`id_pembeli` AS `id_pembeli` FROM ((`tbl_detail_keranjang` join `tbl_produk` on(`tbl_produk`.`id_produk` = `tbl_detail_keranjang`.`id_produk`)) join `tbl_keranjang` on(`tbl_keranjang`.`id_keranjang` = `tbl_detail_keranjang`.`id_keranjang`))  ;
 
 -- --------------------------------------------------------
 
@@ -400,7 +402,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `pesanan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pesanan`  AS SELECT `a`.`tgl_pesanan` AS `tgl_pesanan`, `a`.`penerima` AS `penerima`, `a`.`no_wa` AS `no_wa`, `a`.`alamat` AS `alamat`, `a`.`ongkir` AS `ongkir`, `a`.`total` AS `total`, `e`.`nama_metode` AS `nama_metode`, `e`.`no_metode` AS `no_metode`, `e`.`nama_penerima_pem` AS `nama_penerima_pem`, `a`.`bukti` AS `bukti`, `a`.`resi` AS `resi`, `a`.`id_pesanan` AS `id_pesanan`, `c`.`id_keranjang` AS `id_keranjang`, `b`.`id_detail_keranjang` AS `id_detail_keranjang`, `d`.`id_produk` AS `id_produk`, `e`.`id_metode_pembayaran` AS `id_metode_pembayaran`, `d`.`nama_produk` AS `nama_produk`, `d`.`harga_produk` AS `harga_produk`, `b`.`quantity` AS `quantity`, `a`.`status` AS `status`, `c`.`id_pembeli` AS `id_pembeli`, `a`.`input` AS `input`, `a`.`input`+ interval 1 day AS `deadline` FROM ((((`tbl_pesanan` `a` join `tbl_detail_keranjang` `b` on(`a`.`id_detail_keranjang` = `b`.`id_detail_keranjang`)) join `tbl_keranjang` `c` on(`c`.`id_keranjang` = `b`.`id_keranjang`)) join `tbl_produk` `d` on(`d`.`id_produk` = `b`.`id_produk`)) join `tbl_metode_pembayaran` `e` on(`e`.`id_metode_pembayaran` = `a`.`id_metode_pembayaran`)) WHERE `c`.`id_pembeli` <> 0 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pesanan`  AS SELECT `a`.`tgl_pesanan` AS `tgl_pesanan`, `a`.`penerima` AS `penerima`, `a`.`no_wa` AS `no_wa`, `a`.`alamat` AS `alamat`, `a`.`ongkir` AS `ongkir`, `a`.`total` AS `total`, `e`.`nama_metode` AS `nama_metode`, `e`.`no_metode` AS `no_metode`, `e`.`nama_penerima_pem` AS `nama_penerima_pem`, `a`.`bukti` AS `bukti`, `a`.`resi` AS `resi`, `a`.`id_pesanan` AS `id_pesanan`, `c`.`id_keranjang` AS `id_keranjang`, `b`.`id_detail_keranjang` AS `id_detail_keranjang`, `d`.`id_produk` AS `id_produk`, `e`.`id_metode_pembayaran` AS `id_metode_pembayaran`, `d`.`nama_produk` AS `nama_produk`, `d`.`harga_produk` AS `harga_produk`, `b`.`quantity` AS `quantity`, `a`.`status` AS `status`, `c`.`id_pembeli` AS `id_pembeli`, `a`.`input` AS `input`, `a`.`input`+ interval 1 day AS `deadline` FROM ((((`tbl_pesanan` `a` join `tbl_detail_keranjang` `b` on(`a`.`id_detail_keranjang` = `b`.`id_detail_keranjang`)) join `tbl_keranjang` `c` on(`c`.`id_keranjang` = `b`.`id_keranjang`)) join `tbl_produk` `d` on(`d`.`id_produk` = `b`.`id_produk`)) join `tbl_metode_pembayaran` `e` on(`e`.`id_metode_pembayaran` = `a`.`id_metode_pembayaran`)) WHERE `c`.`id_pembeli` <> 00  ;
 
 -- --------------------------------------------------------
 
@@ -409,7 +411,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `produk`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produk`  AS SELECT `tbl_produk`.`id_produk` AS `id_produk`, `tbl_produk`.`id_kategori` AS `id_kategori`, `tbl_kategori`.`nama_kategori` AS `nama_kategori`, `tbl_produk`.`nama_produk` AS `nama_produk`, `tbl_produk`.`jumlah_produk` AS `jumlah_produk`, `tbl_produk`.`harga_produk` AS `harga_produk`, `tbl_produk`.`deskripsi` AS `deskripsi`, `tbl_produk`.`gambar_produk` AS `gambar_produk` FROM (`tbl_produk` join `tbl_kategori` on(`tbl_produk`.`id_kategori` = `tbl_kategori`.`id_kategori`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produk`  AS SELECT `tbl_produk`.`id_produk` AS `id_produk`, `tbl_produk`.`id_kategori` AS `id_kategori`, `tbl_kategori`.`nama_kategori` AS `nama_kategori`, `tbl_produk`.`nama_produk` AS `nama_produk`, `tbl_produk`.`jumlah_produk` AS `jumlah_produk`, `tbl_produk`.`harga_produk` AS `harga_produk`, `tbl_produk`.`deskripsi` AS `deskripsi`, `tbl_produk`.`gambar_produk` AS `gambar_produk` FROM (`tbl_produk` join `tbl_kategori` on(`tbl_produk`.`id_kategori` = `tbl_kategori`.`id_kategori`))  ;
 
 --
 -- Indexes for dumped tables

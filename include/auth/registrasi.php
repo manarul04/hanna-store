@@ -5,7 +5,7 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
                         <h2>Register</h2>
-                        <form method="post">
+                        <form method="post" action="include/auth/proses/registerProses.php">
                             <?php $date = date('YmdHis')?>
                             <input type="hidden" name="idu" class="form-control" value="<?=$date;?>">
                             <div class="group-input">
@@ -14,7 +14,7 @@
                             </div>
                             <div class="group-input">
                                 <label>Jenis Kelamin *</label>
-                                <select name="jekel" class="form-control">
+                                <select name="jekel" class="form-control"  required="">
                                     <option disabled="" selected="">Pilih Jenis Kelamin</option>
                                     <option value="L">Laki-Laki</option>
                                     <option value="P">Perempuan</option>
@@ -22,11 +22,11 @@
                             </div>
                             <div class="group-input">
                                 <label>Alamat *</label>
-                                <textarea name="alamat" class="form-control" cols="30" rows="5"></textarea>
+                                <textarea name="alamat" class="form-control" cols="30" rows="5"  required=""></textarea>
                             </div>
                             <div class="group-input">
                                 <label>Email *</label>
-                                <input type="email" name="username" required="" autofocus>
+                                <input type="email" name="email" required="" autofocus>
                             </div>
                             <div class="group-input">
                                 <label>Username *</label>
@@ -53,7 +53,7 @@
     <!-- Register Form Section End -->
 
     <?php
-        if(isset($_POST['registrasi'])){
+        if(isset($_POST['registrasi1'])){
             $idu = $_POST['idu'];
             $nama = $_POST['nama'];
             $jekel = $_POST['jekel'];
@@ -82,7 +82,7 @@
                             location.href = '?halaman=registrasi'});
                         </script>";
             }else{
-                $query = mysqli_query($conn,"INSERT INTO tbl_pengguna (idu,nama,username,password,email,hak_akses) VALUES ('$idu','$nama','$username','$password','$email','$hak_akses')");
+                $query = mysqli_query($conn,"INSERT INTO tbl_pengguna (idu,nama,username,password,email,hak_akses) VALUES ('$idu','$nama','$username','$password','$email','Pembeli')");
                 $query2 = mysqli_query($conn,"INSERT INTO tbl_pembeli (id_pembeli,idu,nama_pembeli,jenis_kelamin,alamat) VALUES ('$idu','$idu','$nama','$jekel','$alamat')");
                 
                 if($query==TRUE && $query2==TRUE){

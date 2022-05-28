@@ -29,7 +29,7 @@
         if(isset($_POST['login'])){
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $query = mysqli_query($conn,"SELECT * FROM tbl_pengguna WHERE username='$username' AND password='$password'");
+            $query = mysqli_query($conn,"SELECT * FROM tbl_pengguna WHERE username='$username' AND password='$password' AND is_verified=1");
             $cek_login = mysqli_num_rows($query);
             $data = mysqli_fetch_array($query);
 
@@ -61,7 +61,7 @@
                 }
             }else{
                 echo "<script>
-                    swal('Gagal!', 'Login Gagal', 'error',{
+                    swal('Gagal!', 'Usernama Password tidak cocok atau email anda belum diverifikasi', 'error',{
                         buttons: true}).then( () => {
                         location.href = '?halaman=login'});
                     </script>";
