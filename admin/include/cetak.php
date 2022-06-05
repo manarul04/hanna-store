@@ -126,7 +126,7 @@ function namaBulan($bulan){
 		    }
 		?>
         <?php 
-            $queryJumlah = mysqli_query($conn,"SELECT SUM(total) as jumlah FROM pesanan where tgl_pesanan like '$tgl%'");
+            $queryJumlah = mysqli_query($conn,"SELECT SUM(total) as jumlah FROM pesanan where status='Selesai' and tgl_pesanan like '$tgl%'");
             $j = mysqli_fetch_array($queryJumlah);
         ?>
         <tr>
