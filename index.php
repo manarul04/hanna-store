@@ -10,6 +10,12 @@
       case 'registrasi';
         include 'include/auth/registrasi.php';
       break;
+      case 'lupapassword';
+        include 'include/auth/lupa_password.php';
+      break;
+      case 'passwordbaru';
+        include 'include/auth/password_baru.php';
+      break;
       case 'shop';
         include 'include/pembeli/shop.php';
       break;
@@ -28,6 +34,9 @@
       break;
       case 'registrasi';
         include 'include/auth/registrasi.php';
+      break;
+      case 'lupapassword';
+        include 'include/auth/lupa_password.php';
       break;
       case 'cart';
         include 'include/pembeli/cart.php';

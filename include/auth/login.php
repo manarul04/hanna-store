@@ -14,10 +14,16 @@
                                 <label for="pass">Password *</label>
                                 <input type="password" name="password" id="pass" required="">
                             </div>
-                            <button type="submit" name="login" class="site-btn login-btn">Masuk</button>
+                            <input type="checkbox" onclick="togglePassword('pass')"> Tampilkan Password</input>
+                                
+                            <div >
+                                <button type="submit" name="login" class="site-btn login-btn">Masuk</button>
+                                
+                            </div>
                         </form>
                         <div class="switch-login">
-                            <a href="?halaman=registrasi" class="or-login">Buat Akun</a>
+                            <a href="?halaman=registrasi" class="or-login">Buat Akun</a> <br>
+                            <a href="?halaman=lupapassword" class="or-login">Lupa Password</a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2022 at 05:51 AM
+-- Generation Time: Jun 09, 2022 at 01:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -181,7 +181,11 @@ INSERT INTO `tbl_detail_keranjang` (`id_keranjang`, `id_detail_keranjang`, `id_p
 (2, 3, 10, 10, 'checkout'),
 (2, 4, 10, 50, 'Belum'),
 (2, 4, 12, 90, 'Belum'),
-(1, 5, 13, 100, 'checkout');
+(1, 5, 13, 100, 'checkout'),
+(1, 6, 10, 11, 'checkout'),
+(1, 7, 11, 12, 'checkout'),
+(3, 8, 14, 26, 'checkout'),
+(3, 9, 17, 34, 'checkout');
 
 -- --------------------------------------------------------
 
@@ -239,7 +243,8 @@ CREATE TABLE `tbl_keranjang` (
 
 INSERT INTO `tbl_keranjang` (`id_keranjang`, `id_pembeli`) VALUES
 (1, '20220220063548'),
-(2, '20220306074446');
+(2, '20220306074446'),
+(3, '20220609134144');
 
 -- --------------------------------------------------------
 
@@ -284,7 +289,8 @@ CREATE TABLE `tbl_pembeli` (
 
 INSERT INTO `tbl_pembeli` (`id_pembeli`, `idu`, `nama_pembeli`, `jenis_kelamin`, `alamat`) VALUES
 ('20220220063548', '20220220063548', 'Manarul', 'L', 'getassrabi'),
-('20220528053956', '20220528053956', 'Manarul Hidayat ', 'L', 'getassrabi');
+('20220528053956', '20220528053956', 'Manarul Hidayat ', 'L', 'getassrabi'),
+('20220609134144', '20220609134144', 'Manarul', 'L', 'getas');
 
 -- --------------------------------------------------------
 
@@ -308,9 +314,10 @@ CREATE TABLE `tbl_pengguna` (
 --
 
 INSERT INTO `tbl_pengguna` (`idu`, `nama`, `username`, `password`, `email`, `hak_akses`, `verif_code`, `is_verified`) VALUES
-('20220101022919', 'Admin', 'admin', 'admin', 'admin@gmail.com', 'Admin', '', 0),
-('20220220063548', 'man4', 'manarul04', 'manarul04', '', 'Pembeli', '', 0),
-('20220528053956', 'Manarul Hidayat ', 'mana', 'mana', 'manarulhidayat04@gmail.com', 'Pembeli', 'e8e355a2d66a92e561d128137460058d', 1);
+('20220101022919', 'Admin', 'admin', 'admin', 'admin@gmail.com', 'Admin', '', 1),
+('20220220063548', 'man4', 'manarul04', 'manarul04', '', 'Pembeli', '', 1),
+('20220528053956', 'Manarul Hidayat ', 'mana', 'mana', 'manarulhidayat04@gmail.com', 'Pembeli', 'e8e355a2d66a92e561d128137460058d', 1),
+('20220609134144', 'Manarul', 'manarul92', 'manarul92', 'manarulhidayat92@gmail.com', 'Pembeli', 'cf6656829cdc4598cbc4b278f4320897', 1);
 
 -- --------------------------------------------------------
 
@@ -339,10 +346,14 @@ CREATE TABLE `tbl_pesanan` (
 --
 
 INSERT INTO `tbl_pesanan` (`id_pesanan`, `id_detail_keranjang`, `tgl_pesanan`, `penerima`, `ongkir`, `total`, `no_wa`, `alamat`, `id_metode_pembayaran`, `status`, `resi`, `bukti`, `input`) VALUES
-(1, 1, '2022-02-20', 'Manarul', 45000, '8745000', '23434', '343dsfsd', 1, 'Selesai', '5646546465', '1586674345_ayah sprites.png', '2022-04-25 09:58:59'),
+(1, 1, '2022-04-20', 'Manarul', 45000, '8745000', '23434', '343dsfsd', 1, 'Selesai', '5646546465', '1586674345_ayah sprites.png', '2022-04-25 09:58:59'),
 (2, 2, '2022-02-26', 'fgddfg', 57000, '724000', '7687687', 'gfghf', 0, 'Belum', '', '', '2022-04-25 09:58:59'),
-(3, 3, '2022-03-06', 'Manarul', 11000, '281000', '0897899987', 'getassrabi', 1, 'Selesai', '6756768999', '245650734_hidung.jpg', '2022-04-25 09:58:59'),
-(4, 5, '2022-04-25', 'Manarul', 63000, '3363000', '65765', 'yhjfjf', 1, 'Belum', '', '', '2022-04-24 09:58:59');
+(3, 3, '2022-04-06', 'Manarul', 11000, '281000', '0897899987', 'getassrabi', 1, 'Selesai', '6756768999', '245650734_hidung.jpg', '2022-04-25 09:58:59'),
+(4, 5, '2022-04-25', 'Manarul', 63000, '3363000', '65765', 'yhjfjf', 1, 'Belum', '', '', '2022-04-24 09:58:59'),
+(5, 6, '2022-06-07', 'Manarul', 8000, '305000', '9810290812', 'getassrabi', 1, 'Belum', '', '', '2022-06-07 16:25:13'),
+(6, 7, '2022-06-09', 'Mana', 8000, '356000', '837483', 'srabi', 4, 'Belum', '', '', '2022-06-09 18:30:16'),
+(7, 8, '2022-06-09', 'hhhhh', 63000, '583000', '83784783', 'hhwg', 4, 'Sudah bayar', '', '1842025254_kemensos.jpg', '2022-06-09 18:46:22'),
+(8, 9, '2022-06-09', 'tettetetisksj', 11000, '351000', '62375657235', 'iutkrthk', 4, 'Sudah bayar', '', '1910431489_bnn.png', '2022-06-09 18:47:53');
 
 -- --------------------------------------------------------
 
@@ -365,14 +376,14 @@ CREATE TABLE `tbl_produk` (
 --
 
 INSERT INTO `tbl_produk` (`id_produk`, `id_kategori`, `nama_produk`, `jumlah_produk`, `harga_produk`, `gambar_produk`, `deskripsi`) VALUES
-(10, 1, 'Tas Syahrini 20', 990, '27000', '2106553784_tas_syahrini-20.jpg', 'Tas Syahrini Size 20'),
-(11, 1, 'Tas Syahrini 22', 477, '29000', '130773307_tas_syahrini-22.jpg', 'Tas Syahrini Size 22'),
+(10, 1, 'Tas Syahrini 20', 979, '27000', '2106553784_tas_syahrini-20.jpg', 'Tas Syahrini Size 20'),
+(11, 1, 'Tas Syahrini 22', 465, '29000', '130773307_tas_syahrini-22.jpg', 'Tas Syahrini Size 22'),
 (12, 1, 'Tas Pita Kotak Istimewa 20', 910, '30000', '686622139_tas_kotak_pita_istimewa-20.jpg', 'Tas Pita Kotak yang Istimewa Size 20'),
 (13, 1, 'Tas Pita Kotak Istimewa 22', 600, '33000', '1519945835_tas_kotak_pita_istimewa-22.jpg', 'Tas Pita Kotak Istimewa Size 22'),
-(14, 1, 'Tas Pita Kotak Standard 18', 1200, '20000', '2122297739_tas_kotak_pita_standart-18.jpg', 'Tas Pita Kotak Standard Size 18'),
+(14, 1, 'Tas Pita Kotak Standard 18', 1174, '20000', '2122297739_tas_kotak_pita_standart-18.jpg', 'Tas Pita Kotak Standard Size 18'),
 (15, 1, 'Tas Pita Kotak Standard 20', 900, '22000', '971581654_tas_kotak_pita_standart-20.jpg', 'Tas Pita Kotak Standard Size 20'),
 (16, 1, 'Tas Pita Kotak Standard 22', 600, '23000', '1190800953_tas_kotak_pita_standart-22.jpg', 'Tas Pita Kotak Standard Size 22'),
-(17, 1, 'Tas Serut Tipis 20', 1200, '10000', '1517836840_tas_serut_tipis 20.jpg', 'Tas Serut Tipis'),
+(17, 1, 'Tas Serut Tipis 20', 1166, '10000', '1517836840_tas_serut_tipis 20.jpg', 'Tas Serut Tipis'),
 (18, 1, 'Tas Serut Standard 20', 700, '16000', '2104237473_tas_serut_standart 20.jpg', 'Tas Serut Standard Size 20'),
 (19, 1, 'Tas Serut Standard 22', 600, '18000', '454845323_tas_serut_standart 22.jpg', 'Tas Serut Standard Size 22'),
 (20, 1, 'Tas Kotak Idul Fitri', 1000, '3500', '1541836631_tas_idulfitri_istimewa.jpg', 'All Size');
@@ -513,7 +524,7 @@ ALTER TABLE `tbl_kategori`
 -- AUTO_INCREMENT for table `tbl_keranjang`
 --
 ALTER TABLE `tbl_keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_metode_pembayaran`
@@ -525,7 +536,7 @@ ALTER TABLE `tbl_metode_pembayaran`
 -- AUTO_INCREMENT for table `tbl_pesanan`
 --
 ALTER TABLE `tbl_pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_produk`

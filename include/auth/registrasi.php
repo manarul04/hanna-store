@@ -2,7 +2,7 @@
     <div class="register-login-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3">
+                <div class="col-lg-8 offset-lg-3">
                     <div class="register-form">
                         <h2>Register</h2>
                         <form method="post" action="include/auth/proses/registerProses.php">
@@ -36,10 +36,12 @@
                                 <label>Password *</label>
                                 <input type="text" name="password" required="">
                             </div>
+                            
                             <div class="group-input">
                                 <label for="con-pass">Confirm Password *</label>
-                                <input type="text" name="con-pass" required="">
+                                <input type="text" name="con-pass" required="" id="pass">
                             </div>
+                            <!-- <input type="checkbox" onclick="togglePassword('pass')"> Tampilkan Password</input> -->
                             <button type="submit" name="registrasi" class="site-btn register-btn">REGISTER</button>
                         </form>
                         <div class="switch-login">
@@ -53,7 +55,7 @@
     <!-- Register Form Section End -->
 
     <?php
-        if(isset($_POST['registrasi1'])){
+        if(isset($_POST['registrasi'])){
             $idu = $_POST['idu'];
             $nama = $_POST['nama'];
             $jekel = $_POST['jekel'];

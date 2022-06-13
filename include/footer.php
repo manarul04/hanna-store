@@ -66,6 +66,16 @@
         } );
         
     </script>
+    <script>
+        function togglePassword(s) {
+        var x = document.getElementById(s);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+        }
+    </script>
 </body>
 
 </html>
