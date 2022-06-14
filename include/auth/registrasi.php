@@ -32,16 +32,20 @@
                                 <label>Username *</label>
                                 <input type="text" name="username" required="">
                             </div>
-                            <div class="group-input">
+                            <div class="group-input" style="margin-bottom:0px">
                                 <label>Password *</label>
-                                <input type="text" name="password" required="">
+                                <input type="password" name="password" required="" id="con-pass">
                             </div>
-                            
-                            <div class="group-input">
+                            <div style="margin-bottom:20px">
+                                <input type="checkbox" onclick="togglePassword('con-pass')"> Tampilkan Password</input>
+                            </div>
+                            <div class="group-input" style="margin-bottom:0px">
                                 <label for="con-pass">Confirm Password *</label>
-                                <input type="text" name="con-pass" required="" id="pass">
+                                <input type="password" name="con-pass" required="" id="pass">
                             </div>
-                            <!-- <input type="checkbox" onclick="togglePassword('pass')"> Tampilkan Password</input> -->
+                            <div style="margin-bottom:20px">
+                                <input type="checkbox" onclick="togglePassword('pass')"> Tampilkan Password</input>
+                            </div>
                             <button type="submit" name="registrasi" class="site-btn register-btn">REGISTER</button>
                         </form>
                         <div class="switch-login">
